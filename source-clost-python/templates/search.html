@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Source Closet - Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        .scrollable-div{
+            overflow: auto;
+            height: 500px;
+            float: left;
+            margin-right: 20px;
+            padding-left: 40px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: blueviolet;
+            border-radius: 20px;
+            padding: auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+        }
+        h4{
+            font-family: "Winky Sans", ui-rounded;
+            font-size: 30px;
+        }
+        input{
+            font-family: "Winky Sans", ui-rounded;
+        }
+        label{
+            font-family: "Winky Sans", ui-rounded;
+            font-size: 20px;
+        }
+        label {
+            display: block;
+            font-size: 25px;
+        }
+        #main_search_content{
+            padding-left: 50px;
+        }
+        #submit{
+            font-size: 50px;
+            border-radius: 20px;
+            background-color: blueviolet;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        #years{
+            float: left;
+            margin-right: 30px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: blueviolet;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        #id, #Keywds, #start_yr, #end_yr {
+            font-family: "Winky Sans", ui-rounded;
+            font-size: 15px;
+            width: 200px;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        input[type="checkbox"]{
+            -ms-transform: scale(1.5); /* IE */
+            -moz-transform: scale(1.5); /* FF */
+            -webkit-transform: scale(1.5); /* Safari and Chrome */
+            -o-transform: scale(1.5); /* Opera */
+            transform: scale(1.5);
+            padding: 10px;
+            vertical-align: middle;
+            position: relative;
+            bottom: 1px;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+<body style="font: 'Winky Sans', ui-rounded, sans-serif; color: rgb(190, 147, 112);">
+<div class="topnav">
+      <a href="{{url_for('index')}}">Home</a>
+      <a href="{{url_for('sources_abbr')}}">Source Abbreviations</a>
+      <a class="active" href="{{ url_for('search') }}">Search</a>
+      <a href="{{ url_for('browse') }}">Browse</a>
+      <a href="{{ url_for('further_reading') }}">Further Reading</a>
+      <a href="{{ url_for('about') }}">About</a>
+        {% if not login %}
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+            <a href="{{ url_for('login') }}">Log In</a>
+        {% else %}
+            <a href="{{ url_for('logout') }}">Log Out</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+        {% endif %}
+</div>
+<br>
+<br>
+<div id="main_search_content">
+<form action="{{ url_for('search_process') }}" method="post">
+    <label for="Keywds">Keywords: <input type="search" id="Keywds" name="keywds_"></label>
+    <br>
+    <label for="id">Source ID: <input type="text" id="id" name="id_"></label>
+    <br>
+    <div class="scrollable-div">
+        <h4>Topics:</h4>
+        {% for tag in tags %}
+            <label><input type="checkbox" id="tag" name="tag_{{ tag }}"> {{ tag }}</label>
+            <br>
+        {% endfor %}
+    </div>
+    <div class="scrollable-div">
+        <h4>Countries:</h4>
+        {% for country in countries %}
+            <label><input type="checkbox" id={{ country }} name="country_{{ country }}"> {{ country }}</label>
+            <br>
+        {% endfor %}
+    </div>
+    <div id="years">
+        <h4>Year</h4>
+        <label for="start_yr">From: <input type="text" id="start_yr" name = "start_yr"><br></label>
+        <br>
+        <label for="end_yr">To: <input type="text" id="end_yr" name="end_yr"></label>
+    </div>
+    <div>
+    <br>
+    <input type="submit" value="Submit" id="submit" style="margin-top: 40px; margin-left: 40px;">
+    </div>
+</form>
+</div>
+</body>
+</html>

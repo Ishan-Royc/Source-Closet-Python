@@ -1,0 +1,172 @@
+.source{
+    border-radius: 20px;
+    background-color: rgb(95, 18, 167);
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+#title{
+    color: rgb(176, 104, 53);
+    font-family: "Winky Sans";
+    text-align: center;
+    -webkit-text-stroke: 2px black;
+}
+
+h1{
+    text-align: center;
+}
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0,0);
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: rgb(190, 147, 112);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+    font-family: "Winky Sans", ui-rounded;
+  font-size:22px;
+
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #1b212e;
+  color: white;
+    border-radius: 10px;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: rgb(95, 18, 167);
+  color: white;
+  border-radius: 10px;
+}
+
+.pdf{
+    height: 900px;
+}
+
+.sidebar{
+    width: 300px;
+    box-sizing: border-box;
+    position:absolute;
+    background-color: rgb(74, 20, 131);
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 150%;
+    z-index: 20;
+}
+.sidebar a{
+    color: rgb(190, 147, 112);
+    font-family: "Winky Sans";
+    font-size: 20px;
+}
+
+#main{
+    padding-right: 50px;
+    display: flex;
+    overflow: auto;
+    height: 560px;
+    padding-bottom: 100px;
+}
+
+#main_content{
+    margin-left: 230px;
+    padding-left: 10%;
+    padding-right: 50px;
+}
+
+#metadata{
+    font-family: "Winky Sans";
+    font-size: 15px;
+    margin-left: 5%;
+    padding-left: 40px;
+    overflow: auto;
+}
+body{
+    overflow: auto;
+    background-color: #1b212e;
+}
+
+#src_frame{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.src_heading{
+    font-family: "Winky Sans";
+    font-size:25px;
+    color: rgb(190, 147, 112);
+    text-align: center;
+}
+.desc{
+    font-family: "Patrick Hand SC";
+    display: inline;
+    font-size: 22px;
+}
+.src_link{
+    text-decoration: none;
+    color: rgb(190, 147, 112);
+    font-family: "Winky Sans";
+    font-size: 20px;
+ }
+
+ .results_heading{
+    font-family: "Winky Sans";
+    font-size: 25px;
+    color: rgb(190, 147, 112);
+    text-align: center;
+    margin-top: 20px;
+}
+.results_subheading{
+    font-family: "Winky Sans";
+    font-size: 25px;
+    color: rgb(190, 147, 112);
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+.highlighted{
+    color: #d0d0d0;
+    font-weight: bold;
+}
+
+.desc_lbl{
+    font-weight: bold;
+    color: #d0d0d0;;
+}
+
+#content{
+    margin-left: 15%;
+}
+
+.adj-source-btn{
+    font-family: "Winky Sans";
+    font-size: 18px;
+    background-color: rgb(95, 18, 167);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.adj-source-btn:hover{
+    background-color: rgb(120, 30, 200);
+    cursor: pointer;
+}

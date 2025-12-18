@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Source Closet - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+    <meta name="google-site-verification" content="FyuSCl7BsO80rtLPSAib-nEb1hCIjHcgwGOc1pZJ1Y4" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Search the world's information, including webpages, images, video's and more." />
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+    <style>
+        #title{
+            font-size: 4em;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+    <script>
+        const { animate, scroll, inView, hover } = Motion
+    </script>
+<div class="topnav">
+  <a class="active" href="{{url_for('index')}}">Home</a>
+  <a href="{{url_for('sources_abbr')}}">Source Abbreviations</a>
+  <a href="{{ url_for('search') }}">Search</a>
+  <a href="{{ url_for('browse') }}">Browse</a>
+  <a href="{{ url_for('further_reading') }}">Further Reading</a>
+  <a href="{{ url_for('about') }}">About</a>
+  {% if not login %}
+    <a href="{{ url_for('signup') }}">Sign Up</a>
+    <a href="{{ url_for('login') }}">Log In</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">Log Out</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
+  {% endif %}
+</div>
+<h1 id="title">Source Closet</h1>
+{% for src in sources[:6] %}
+<a href="{{ url_for("source", id=src[1]) }}" class="src_link">
+    <div class="source">
+        <h2 class="src_heading">{{ src[0]["Title"] }}</h2>
+        <p>{{ src[0]["Date"] }}/{{ src[0]["Month"] }}/{{ src[0]["Year"] }}</p>
+        <p><span class="desc_lbl">Author:</span> <span class="desc" style="display: inline;">{{ src[0]["Author"] }}</span></p>
+        <p><span class="desc_lbl">Description:</span> <span class="desc" style="display: inline;">{{ src[0]["Description"] }}</span></p>
+        <p><span class="desc_lbl">Tags:</span> <span class="desc" style="display: inline;">{{ ', '.join(src[0]["Tags"]) }}<span></p>
+    </div>
+</a>
+<br>
+{% endfor %}
+<br>
+<script>
+    inView(".source",(element, enterInfo)=>{
+        animate(element, {
+            scale: [0.2, 1,0.98,1],
+            opacity: [0, 1],
+            duration: 3.0,
+            type: "spring",
+            stiffness: 100,
+            delay: 0.9
+        });
+        return () => animate(element, {
+                scale: 0.2,
+                opacity: 0
+        });
+    });
+    hover(".source", (element) => {
+        animate(element, { scale: 0.97 })
+
+        return () => animate(element, { scale: 1 })
+    });
+</script>
+</body>
+</html>

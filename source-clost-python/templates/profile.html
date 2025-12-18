@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Source Closet - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+    <meta name="google-site-verification" content="FyuSCl7BsO80rtLPSAib-nEb1hCIjHcgwGOc1pZJ1Y4" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Search the world's information, including webpages, images, video's and more." />
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+    <style>
+        #title{
+            font-size: 3em;
+        }
+        .x-btn{
+            font-family: "Winky Sans";
+            font-size: 2em;
+            color: rgb(190, 147, 112);
+            background-color: rgb(0, 68, 195);
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            position: relative;
+            top: -14px;
+            left: 104%;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+    <script>
+        const { animate, scroll, inView, hover } = Motion
+        function removeSource(id){
+            window.location.href = "{{ url_for('delete_source', id = 0) }}".replace('0', id);
+        }
+    </script>
+<div class="topnav">
+  <a href="{{url_for('index')}}">Home</a>
+  <a href="{{url_for('sources_abbr')}}">Source Abbreviations</a>
+  <a href="{{ url_for('search') }}">Search</a>
+  <a href="{{ url_for('browse') }}">Browse</a>
+  <a href="{{ url_for('further_reading') }}">Further Reading</a>
+  <a href="{{ url_for('about') }}">About</a>
+        {% if not login %}
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+            <a href="{{ url_for('login') }}">Log In</a>
+        {% else %}
+            <a href="{{ url_for('logout') }}">Log Out</a>
+            <a class="active" href="{{ url_for('profile') }}">Profile</a>
+        {% endif %}
+</div>
+<h1 id="title">Your Profile</h1>
+{% for src in sources %}
+<div class="source" style="position: relative;">
+    <button class="x-btn" onclick="removeSource({{ src[0] }});">x</button>
+    <a href="{{ url_for('source', id=src[0]) }}" class="src_link" id="{{ src[0] }}" style="display: block;">
+        <h2 class="src_heading">{{ src[6] }}</h2>
+        <p>{{ src[4] }}/{{ src[3] }}/{{ src[2] }}</p>
+        <p>Author: {{ src[5] }}</p>
+        <p>Description: <span class="desc" style="display: inline;">{{ src[1] }}</span></p>
+    </a>
+</div>
+<br>
+{% endfor %}
+<br>
+<script>
+    inView(".source",(element, enterInfo)=>{
+        animate(element, {
+            scale: [0.2, 1,0.98,1],
+            opacity: [0, 1],
+            duration: 3.0,
+            type: "spring",
+            stiffness: 100,
+            delay: 0.9
+        });
+    });
+    hover(".source", (element) => {
+        animate(element, { scale: 0.97 })
+
+        return () => animate(element, { scale: 1 })
+    })
+    
+</script>
+</body>
+</html>
